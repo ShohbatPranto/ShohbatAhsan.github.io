@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Shohbat Ahsan | Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: rgba(15, 23, 42, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #334155;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+            animation: fadeIn 1s ease-in;
+        }
+
+        /* UPDATED: Intro Styling (Increased size and weight) */
+        .hero-intro {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            /* Changed display to flex to manage children */
+            display: flex; 
+            flex-direction: column; /* Stacks children vertically */
+            align-items: flex-start;
+        }
+        
+        /* New line styling for the greeting */
+        .hero-greeting {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5rem; /* Creates the visual gap */
+            font-size: 2.5rem
+        }
+        
+        .hero-name-text {
+            font-size: 1.5rem; /* Smaller than the greeting for hierarchy */
+            font-weight: 600;
+        }
+
+        /* Wave Animation */
+        .wave-emoji {
+            display: inline-block;
+            animation: wave 2.5s infinite;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+
+        /* Sections General */
+        section {
+            padding: 5rem 10%;
+        }
+
+        h3.section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h3.section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* About / Education Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .card .date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent);
+        }
+
+        /* Certifications List */
+        .cert-list {
+            list-style: none;
+        }
+        
+        .cert-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .cert-list i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            color: var(--text-secondary);
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            section, .hero { padding: 3rem 5%; }
+            .nav-links { display: none; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <img src="my-photo.jpeg" alt="MD Shohbat Ahsan" class="profile-pic">
+            <div class="logo">MD Shohbat Ahsan</div>
+        </div>
+
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-intro">
+            <div class="hero-greeting">
+                <span>Hi</span>
+                <span class="wave-emoji">👋</span>
+            </div>
+            <span class="hero-name-text">My name is</span>
+        </div>
+        <h1>MD Shohbat Ahsan</h1>
+        <h2>Computer Science Graduate & Problem Solver.</h2>
+        <p>
+            I am a dedicated Computer Science graduate from BRAC University with a minor in Accounting. 
+            I specialize in Python, AI applications, and Web Development, with a passion for helping others learn.
+        </p>
+        <div>
+            <a href="#contact" class="btn">Get In Touch</a>
+            <a href="https://github.com/ShohbatPranto" target="_blank" class="btn btn-outline">View GitHub</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="grid-2">
+            <div>
+                <h3 class="section-title">About Me</h3>
+                <p>
+                    I am a motivated professional with a strong foundation in programming languages and database management. 
+                    My background is unique—combining technical CS skills with a minor in Accounting.
+                </p>
+                <br>
+                <p>
+                    I have a track record of academic excellence, including a thesis on <strong>DeepFake Detection</strong>. 
+                    I am known for my quick learning abilities, leadership potential, and strategic approach to challenges.
+                </p>
+            </div>
+            <div>
+                <h3 class="section-title">Technical Skills</h3>
+                <div class="skills-container">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">AI</span>
+                    <span class="skill-tag">OOP</span>
+                    <span class="skill-tag">Accounting</span>
+                    <span class="skill-tag">Data Analysis</span>
+                </div>
+                <br>
+                <h4 style="color: var(--text-secondary); margin-bottom: 0.5rem;">Soft Skills</h4>
+                <div class="skills-container">
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Communication</span>
+                    <span class="skill-tag">Critical Thinking</span>
+                    <span class="skill-tag">Adaptability</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h3 class="section-title">Experience</h3>
+        <div class="grid-2">
+            <div class="card">
+                <h4>Student Tutor</h4>
+                <span class="date">Brac University | Oct 2024 - Sep 2025</span>
+                <ul>
+                    <li>Provided academic support to undergraduate students in programming and CS courses.</li>
+                    <li>Collaborated with faculty to assess student performance and maintain fair evaluation standards.</li>
+                    <li>Assisted in grading assignments and offering constructive feedback.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>Private Tutor</h4>
+                <span class="date">Self Employed | Feb 2021 - Present</span>
+                <ul>
+                    <li>Designed personalized study plans for students ranging from elementary school to university.</li>
+                    <li>Helped students improve logical reasoning and develop structured problem-solving approaches.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h3 class="section-title">Education & Certifications</h3>
+        <div class="grid-2">
+            <div>
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <h4>B.Sc. in Computer Science</h4>
+                    <span class="date">Brac University | June 2022 - Oct 2025</span>
+                    <p><strong>Thesis:</strong> DeepFake Detection</p>
+                </div>
+                <div class="card">
+                    <h4>Minor in Accounting</h4>
+                    <span class="date">Brac University | Feb 2024 - Oct 2025</span>
+                </div>
+            </div>
+            <div>
+                <div class="card">
+                    <h4>Certifications & Awards</h4>
+                    <ul class="cert-list">
+                        <li><i class="fas fa-certificate"></i> Data Analysis with Python - IBM</li>
+                        <li><i class="fas fa-certificate"></i> Generative AI: Prompt Engineering Basics - IBM</li>
+                        <li><i class="fas fa-certificate"></i> Introduction to Psychology - Yale University</li>
+                        <li><i class="fas fa-trophy"></i> The Daily Star Award</li>
+                        <li><i class="fas fa-trophy"></i> Pearson Edexcel Award</li>
+                        <li><i class="fas fa-star"></i> SAT Score: 1340</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="text-align: center;">
+        <h3 class="section-title">Get In Touch</h3>
+        <p style="margin-bottom: 2rem; color: var(--text-secondary);">
+            I am currently looking for new opportunities. Whether you have a question or just want to say hi, my inbox is always open!
+        </p>
+        <a href="mailto:mdshohbatahsan@gmail.com" class="btn">Say Hello</a>
+        
+        <div style="margin-top: 3rem;">
+            <p>Dhaka, Bangladesh</p>
+            <p>+880 1629464182</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/ShohbatPranto" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/mdshohbatahsan/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:mdshohbatahsan@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">&copy; 2025 MD Shohbat Ahsan. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
